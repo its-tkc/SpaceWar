@@ -8,6 +8,8 @@ TagManager:
   - fireball
   - laser
   - BG
+  - BGCR
+  - Enemy
   layers:
   - Default
   - TransparentFX

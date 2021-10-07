@@ -6,13 +6,13 @@ public class ShipBlue : MonoBehaviour
 {
     Animator anim;
     SpriteRenderer rend;
-    //[SerializeField] GameObject fireball;
     private int health = 100;
-    float attacktime;
     public float attackRate = 3;
+    AudioSource aud;
    
     void Start()
     {
+        aud = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         rend = GetComponent<SpriteRenderer>();
     }
@@ -24,13 +24,9 @@ public class ShipBlue : MonoBehaviour
         {
             anim.SetTrigger("blast");
             Destroy(gameObject, 1f);
+            ScoreHandler.score += 20;
+            aud.Play();
         }
-
-       /* if(Time.time >= attacktime)
-        {
-            Instantiate(fireball , new Vector3(transform.position.x + 1f, transform.position.y - 1.5f, transform.position.z), Quaternion.identity);
-            attacktime = Time.time + 1f / attackRate;
-        }*/
 
     }
 
@@ -39,8 +35,7 @@ public class ShipBlue : MonoBehaviour
         if (collision.gameObject.tag == "laser")
         {
             health -= 3;
-            //rend.color = new Color("red");
-            
+           
         }
     }
 }
